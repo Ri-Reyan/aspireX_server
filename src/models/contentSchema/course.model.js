@@ -16,14 +16,6 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    thumbnail: {
-      type: String,
-      required: true,
-    },
-    videoUrl: {
-      type: String,
-      required: true,
-    },
     instructor: {
       type: String,
       required: true,
@@ -35,6 +27,14 @@ const courseSchema = new mongoose.Schema(
     studentsEnrolled: {
       type: Number,
       default: 0,
+    },
+    thumbnailUrl: {
+      type: String,
+      required: true,
+    },
+    videoUrl: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true },
