@@ -9,7 +9,9 @@ export const createCourse = asyncHandler(async (req, res) => {
     instructor,
     category,
     thumbnailUrl,
+    thumbnailPublicId,
     videoUrl,
+    videoPublicId,
   } = req.body;
 
   const course = await Course.create({
@@ -19,7 +21,9 @@ export const createCourse = asyncHandler(async (req, res) => {
     instructor,
     category,
     thumbnailUrl,
+    thumbnailPublicId,
     videoUrl,
+    videoPublicId,
   });
 
   res.status(201).json({
@@ -67,12 +71,26 @@ export const updateCourse = asyncHandler(async (req, res) => {
 export const deleteCourse = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
-  const course = await Course.findByIdAndDelete(id);
+  const course = await Course.findById(id);
 
   if (!course) {
     res.status(404);
     throw new Error("Course not found");
   }
+
+  if (course.videoPublicId) {
+    await cloudinary.uploader.destroy(course.videoPublicId, {
+      resource_type: "video",
+    });
+  }
+
+  if (course.thumbnailPublicId) {
+    await cloudinary.uploader.destroy(course.thumbnailPublicId, {
+      resource_type: "image",
+    });
+  }
+
+  await course.remove();
 
   res.status(200).json({
     success: true,

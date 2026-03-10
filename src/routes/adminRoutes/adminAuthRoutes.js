@@ -34,7 +34,7 @@ router.get("/thumbnail-signature", getThumbnailUploadSignature);
 // business logic for creating, updating, and deleting courses
 
 router.post("/create-course", protect("admin"), createCourse);
-router.put("/update-course/:name/:id", protect("admin"), updateCourse);
-router.delete("/delete-course/:name/:id", protect("admin"), deleteCourse);
+router.put("/update-course/:title/:id", protect("admin"), updateCourse);
+router.delete("/delete-course/:title/:id", protect("admin"), deleteCourse);
 
 export default router;

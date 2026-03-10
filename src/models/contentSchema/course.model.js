@@ -32,7 +32,15 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    thumbnailPublicId: {
+      type: String,
+      required: true,
+    },
     videoUrl: {
+      type: String,
+      required: true,
+    },
+    videoPublicId: {
       type: String,
       required: true,
     },
