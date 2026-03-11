@@ -36,8 +36,8 @@ const Login = (Model) =>
       throw new Error("Invalid email or password");
     }
 
-    const accessToken = genAccessToken(existingUser._id);
-    const refreshToken = genRefreshToken(existingUser._id);
+    const accessToken = genAccessToken(existingUser._id, existingUser.role);
+    const refreshToken = genRefreshToken(existingUser._id, existingUser.role);
 
     existingUser.refreshToken = refreshToken;
     await existingUser.save();

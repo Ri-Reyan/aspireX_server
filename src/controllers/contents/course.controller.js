@@ -1,7 +1,10 @@
 import asyncHandler from "express-async-handler";
 import Course from "../models/course.model.js";
+import { CourseSchema } from "../validations/course.validator.js";
 
 export const createCourse = asyncHandler(async (req, res) => {
+  const { success, data, error } = CourseSchema.safeParse(req.body);
+
   const {
     title,
     description,
@@ -12,7 +15,13 @@ export const createCourse = asyncHandler(async (req, res) => {
     thumbnailPublicId,
     videoUrl,
     videoPublicId,
-  } = req.body;
+  } = data;
+
+  if (!success || !error) {
+    const errorMessage = error?.errors[0]?.message || "Invalid course data";
+    res.status(400);
+    throw new Error(errorMessage);
+  }
 
   const course = await Course.create({
     title,
@@ -90,7 +99,7 @@ export const deleteCourse = asyncHandler(async (req, res) => {
     });
   }
 
-  await course.remove();
+  await course.deleteOne();
 
   res.status(200).json({
     success: true,

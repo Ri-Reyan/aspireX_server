@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const protect =
   (...roles) =>
-  (req, res, next) => {
+  async (req, res, next) => {
     const token = req.cookies?.accessToken;
 
     if (!token) {

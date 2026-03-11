@@ -37,8 +37,8 @@ const verifyOtp = (Model, role) =>
       throw new Error("OTP has expired");
     }
 
-    const accessToken = genAccessToken(user._id);
-    const refreshToken = genRefreshToken(user._id);
+    const accessToken = genAccessToken(user._id, user.role);
+    const refreshToken = genRefreshToken(user._id, user.role);
 
     user.refreshToken = refreshToken;
     user.isVerified = true;
