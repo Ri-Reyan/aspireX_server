@@ -4,8 +4,8 @@ import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import errorHandler from "./src/middleware/error-middleware/errorHandler.middleware.js";
-import userAuthRoutes from "./src/routes/userRoutes/userAuthRoutes.js";
-import adminAuthRoutes from "./src/routes/adminRoutes/adminAuthRoutes.js";
+import userRoutes from "./src/routes/userRoutes/userRoutes.js";
+import adminRoutes from "./src/routes/adminRoutes/adminRoutes.js";
 
 const app = express();
 
@@ -33,8 +33,8 @@ app.use(helmet());
 limiter.limit = process.env.NODE_ENV === "production" ? 50 : 100;
 app.use(rateLimit(limiter));
 
-app.use("/api/user", userAuthRoutes);
-app.use("/api/admin", adminAuthRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 // always use the error handler as the last middleware
 app.use(errorHandler);

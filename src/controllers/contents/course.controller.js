@@ -1,9 +1,9 @@
 import asyncHandler from "express-async-handler";
-import Course from "../models/course.model.js";
-import { CourseSchema } from "../validations/course.validator.js";
+import Course from "../../models/contentSchema/course.model.js";
+import { ContentSchema } from "../../validations/content/content.validator.js";
 
 export const createCourse = asyncHandler(async (req, res) => {
-  const { success, data, error } = CourseSchema.safeParse(req.body);
+  const { success, data, error } = ContentSchema.safeParse(req.body);
 
   const {
     title,

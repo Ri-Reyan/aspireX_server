@@ -1,4 +1,4 @@
-import cloudinary from "../config/cloudinary.js";
+import cloudinary from "../../config/cloudinary.js";
 
 export const getVideoUploadSignature = (req, res) => {
   const timestamp = Math.round(new Date().getTime() / 1000);

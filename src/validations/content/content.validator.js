@@ -1,6 +1,6 @@
 import zod from "zod";
 
-export const createContentSchema = zod.object({
+export const ContentSchema = zod.object({
   title: zod.string().min(5).max(100),
   description: zod.string().min(10),
   price: zod.number().positive(),

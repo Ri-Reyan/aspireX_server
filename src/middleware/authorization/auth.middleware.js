@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const protect =
+export const protect =
   (...roles) =>
   async (req, res, next) => {
     const token = req.cookies?.accessToken;
@@ -28,5 +28,3 @@ const protect =
       throw new Error("Invalid or expired access token");
     }
   };
-
-export default protect;

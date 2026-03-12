@@ -8,13 +8,13 @@ import refreshToken from "../../controllers/authentication/refresh.contollers.js
 import {
   getVideoUploadSignature,
   getThumbnailUploadSignature,
-} from "../controllers/upload.controller.js";
+} from "../../controllers/contents/upload.controller.js";
 import {
   createCourse,
   deleteCourse,
   updateCourse,
 } from "../../controllers/contents/course.controller.js";
-import protect from "../../middleware/authMiddleware.js";
+import { protect } from "../../middleware/authorization/auth.middleware.js";
 
 const router = express.Router();
 
